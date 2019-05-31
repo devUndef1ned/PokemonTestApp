@@ -2,6 +2,11 @@ package com.devundefined.pokemontestapp.presentation.pokemonlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.devundefined.pokemontestapp.PokemonTestApp
 import com.devundefined.pokemontestapp.R
 import com.devundefined.pokemontestapp.domain.models.Pokemon
@@ -10,9 +15,17 @@ class PokemonListActivity : AppCompatActivity(), PokemonListView {
 
     private val presenter: PokemonListPresenter = PokemonTestApp.INSTANCE.appComponent.listPresenter()
 
+    private val recyclerView: RecyclerView by lazy { findViewById<RecyclerView>(R.id.recycler_view) }
+    private val progress: ProgressBar by lazy { findViewById<ProgressBar>(R.id.progress) }
+    private val adapter: PokemonListAdapter = PokemonListAdapter {
+        // TODO open activityInfo
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_pokemon_list)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
     }
 
     override fun onStart() {
@@ -26,10 +39,13 @@ class PokemonListActivity : AppCompatActivity(), PokemonListView {
     }
 
     override fun show(pokemons: List<Pokemon>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        adapter.setData(pokemons)
+        progress.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
     }
 
     override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        progress.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
     }
 }

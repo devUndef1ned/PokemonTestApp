@@ -15,7 +15,8 @@ class DomainModule {
 
     @Provides
     @Singleton
-    fun provideLoadService(pokemonInfoApi: PokemonInfoApi): PokemonLoadService = PokemonLoadServiceImpl(pokemonInfoApi)
+    fun provideLoadService(pokemonInfoApi: PokemonInfoApi, pokemonRepository: PokemonRepository): PokemonLoadService
+            = PokemonLoadServiceImpl(pokemonInfoApi, pokemonRepository)
 
     @Provides
     @Singleton

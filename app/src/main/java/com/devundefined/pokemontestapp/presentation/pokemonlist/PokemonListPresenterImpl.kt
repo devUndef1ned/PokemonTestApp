@@ -28,8 +28,8 @@ class PokemonListPresenterImpl(private val loadService: PokemonLoadService,
     private fun onPokemonsLoaded(pokemons: List<Pokemon>) {
         if (pokemons.isEmpty()) {
             compositeDisposable.add(
-                perform { loadService.loadPokemons() }
-                    .subscribe()
+                load { loadService.loadPokemons() }
+                    .subscribe { pokemons -> onPokemonsLoaded(pokemons) }
             )
         } else {
             view?.show(pokemons)

@@ -8,7 +8,7 @@ data class PokemonEntity(
     @PrimaryKey var id: Int,
     var name: String,
     var photoUrl: String?,
-    var height: Int,
-    var weight: Int,
+    var height: Int?,
+    var weight: Int?,
     var types: ArrayList<String>
 )

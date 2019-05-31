@@ -9,7 +9,11 @@ class PokemonRepositoryImpl(private val pokemonDao: PokemonDao) : PokemonReposit
     }
 
     override fun save(pokemons: List<Pokemon>) {
-        return pokemonDao.insertAll(pokemons.mapTo(mutableListOf(), toEntity))
+        pokemonDao.insertAll(pokemons.mapTo(mutableListOf(), toEntity))
+    }
+
+    override fun save(pokemon: Pokemon) {
+        pokemonDao.insert(toEntity(pokemon))
     }
 
     override fun getAll(): List<Pokemon> {
