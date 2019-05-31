@@ -3,6 +3,7 @@ package com.devundefined.pokemontestapp.infrastructure.persistance
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.devundefined.pokemontestapp.domain.models.Pokemon
 
 @Dao
@@ -16,6 +17,6 @@ interface PokemonDao {
     @Insert
     fun insertAll(pokemons: List<PokemonEntity>)
 
-    @Insert
-    fun insert(pokemon: PokemonEntity)
+    @Update
+    fun update(pokemon: PokemonEntity)
 }

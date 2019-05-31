@@ -13,7 +13,7 @@ class PokemonRepositoryImpl(private val pokemonDao: PokemonDao) : PokemonReposit
     }
 
     override fun save(pokemon: Pokemon) {
-        pokemonDao.insert(toEntity(pokemon))
+        pokemonDao.update(toEntity(pokemon))
     }
 
     override fun getAll(): List<Pokemon> {

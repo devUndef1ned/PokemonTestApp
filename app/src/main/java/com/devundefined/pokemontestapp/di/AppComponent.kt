@@ -4,6 +4,7 @@ import com.devundefined.pokemontestapp.di.modules.ContextModule
 import com.devundefined.pokemontestapp.di.modules.DomainModule
 import com.devundefined.pokemontestapp.di.modules.InfrastructureModule
 import com.devundefined.pokemontestapp.di.modules.PresentationModule
+import com.devundefined.pokemontestapp.presentation.pokemoninfo.PokemonInfoPresenter
 import com.devundefined.pokemontestapp.presentation.pokemonlist.PokemonListPresenter
 import dagger.Component
 import javax.inject.Singleton
@@ -13,4 +14,6 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun listPresenter(): PokemonListPresenter
+
+    fun infoPresenter(): PokemonInfoPresenter
 }

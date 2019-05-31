@@ -1,5 +1,6 @@
 package com.devundefined.pokemontestapp.presentation.pokemonlist
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devundefined.pokemontestapp.PokemonTestApp
 import com.devundefined.pokemontestapp.R
 import com.devundefined.pokemontestapp.domain.models.Pokemon
+import com.devundefined.pokemontestapp.presentation.pokemoninfo.PokemonInfoActivity
 
 class PokemonListActivity : AppCompatActivity(), PokemonListView {
 
@@ -17,8 +19,8 @@ class PokemonListActivity : AppCompatActivity(), PokemonListView {
 
     private val recyclerView: RecyclerView by lazy { findViewById<RecyclerView>(R.id.recycler_view) }
     private val progress: ProgressBar by lazy { findViewById<ProgressBar>(R.id.progress) }
-    private val adapter: PokemonListAdapter = PokemonListAdapter {
-        // TODO open activityInfo
+    private val adapter: PokemonListAdapter = PokemonListAdapter {pokemon ->
+        startActivity(Intent(this, PokemonInfoActivity::class.java).apply { putExtra(PokemonInfoActivity.EXTRA_KEY_POKEMON, pokemon) })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
